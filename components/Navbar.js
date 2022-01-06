@@ -7,8 +7,8 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ethers, providers } from "ethers"
 
 const navigation = [
-  { name: 'About', href: '/about', current: true },
-  { name: 'Fund Projects', href: '/fund', current: false },
+  { name: 'Creators', href: '/creators', current: true },
+  { name: 'Creator 12', href: '/creator/12', current: false },
   { name: 'Start Project', href: '/start', current: false },
   { name: 'Team', href: '/team', current: false },
 ]	
@@ -23,30 +23,26 @@ export default function Navbar() {
 	const [isChainNotMatic, setIsChainNotMatic] = useState(true)
 
 	const checkWalletConnected = async () => {
-		const { ethereum } = window
-		
-		if(!ethereum) {
-			console.log('Install Metamask')
-			return
-		}
-
-		const accounts = await ethereum.request({ method: 'eth_accounts' })
-
-		if(accounts.length !== 0) {
-			const account = accounts[0]
-			console.log("Found Account, ", account)
-			let provider = new ethers.providers.Web3Provider(window.ethereum)
-			let network = await provider.getNetwork()
-			setAccount(account)
-			if(network.name !==  "maticmum") {
-				setIsChainNotMatic(true)
+		try {
+			const { ethereum } = window
+			
+			if(!ethereum) {
+				console.log('Install Metamask')
+				return
 			}
-			else {
-				console.log('maticmum connected');
-				setIsChainNotMatic(false)
+	
+			const accounts = await ethereum.request({ method: 'eth_accounts' })
+	
+			if(accounts.length !== 0) {
+				const account = accounts[0]
+				console.log("Found Account, ", account)
+				setAccount(account)
+				setIsAuthenticated(true)
+			} else {
+				console.log("Create a Ethereum Account")
 			}
-		} else {
-			console.log("Create a Ethereum Account")
+		} catch (e) {
+			console.log(e)
 		}
 	}
 
@@ -70,21 +66,10 @@ export default function Navbar() {
 	}
 
 	useEffect(() => checkWalletConnected, [])
-	useEffect(() => login, [])
+	// useEffect(() => login, [])
 	useEffect(() => {
 		console.log(account)
 	}, [account])
-	useEffect(() => {
-		(async () => {
-			if(isChainNotMatic) {
-				await ethereum.request({
-					method: 'wallet_switchEthereumChain',
-					params: [{ chainId: '0xb2f7f8759dbf8d3530162a89dc6f1f4d9a1a9ac13d3a6a72409ffd96afa1a0a9' }]
-				})
-			}
-			setIsChainNotMatic(false)
-		})()
-	}, [setIsChainNotMatic])
 
 	return (
 		<Disclosure as="nav" className="bg-white glass sticky top-0 z-50 w-full bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-60 border border-opacity-0">

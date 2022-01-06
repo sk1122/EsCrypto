@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import Navbar from "./Navbar"
 
 export default function Hero() {
@@ -12,19 +14,22 @@ export default function Hero() {
 						<p className="mb-5 mt-5">
 							With EsCrypt you can pay your creators in $CRYPTO
 						</p>
-						<button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-800 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-100">
-							Creators wanting $CRYPTO
-						</button>
+						<Link href={'/creators'}>
+							<button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-800 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-100">
+								Creators wanting $CRYPTO
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>
 			<div className="h-1/4 bg-white text-black flex justify-center items-center flex-col space-y-4 py-16">
-				<h1 className='text-3xl font-bold'>Not a Sponsor?</h1>
-				<form action="">
-					<input type="text" className="px-2 py-1 rounded-md border border-gray-400 focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-400 focus:ring-indigo-600" placeholder="Brand" />
+				<h1 className='text-3xl font-bold'>A Creator?</h1>
+				<form action="" className="space-x-4">
+					<input type="text" className="px-2 py-1 rounded-md border border-gray-400 focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-400 focus:ring-indigo-600" placeholder="Your Name" />
+					<input type="text" className="px-2 py-1 rounded-md border border-gray-400 focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-400 focus:ring-indigo-600" placeholder="Social Media Profile" />
 				</form>
 				<button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-800 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-100">
-					Spend some $CRYPTO
+					Earn some $CRYPTO
 				</button>
 			</div>
 		</div>

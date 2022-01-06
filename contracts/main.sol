@@ -8,7 +8,7 @@ contract Escrow {
         string description;
         bool available;
         uint charges;
-        string[] links;
+        mapping(string => string) links;
         address adrs;
     }
 

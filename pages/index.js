@@ -1,14 +1,19 @@
 import Head from 'next/head'
 import { ethers } from 'ethers'
+import { useContext } from 'react'
 
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import About from '../components/About'
 
+import { useAccountContext } from '../context/account'
+
 import deployABI from '../interfaces/deploy.json'
 const CONTRACT_ADDRESS = '0xa1a61BA2B7728D7a61396ec6a563AA011052231E'
 
 export default function Home() {  
+  const data = useAccountContext()
+  
   const deploy = async () => {
     try {
       const { ethereum } = window;
