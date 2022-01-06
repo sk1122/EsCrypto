@@ -1,5 +1,3 @@
-import styles from "./card.module.css";
-
 export default function Card() {
   return (
     <div className="my-px px-px w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-2 lg:px-2 lg:w-1/2 xl:my-2 xl:px-2 xl:w-1/3">
